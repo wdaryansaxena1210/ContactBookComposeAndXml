@@ -1,4 +1,4 @@
-package com.example.contactbookappcompose.presentation
+package com.example.contactbookappcompose.presentation.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.example.contactbookappcompose.R
 import com.example.contactbookappcompose.data.local.Contact
 import org.mongodb.kbson.ObjectId

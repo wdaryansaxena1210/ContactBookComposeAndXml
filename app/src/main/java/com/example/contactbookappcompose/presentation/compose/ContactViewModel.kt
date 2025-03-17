@@ -1,4 +1,4 @@
-package com.example.contactbookappcompose.presentation
+package com.example.contactbookappcompose.presentation.compose
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -11,18 +11,11 @@ import com.example.contactbookappcompose.domain.contact.ContactData
 import com.example.contactbookappcompose.domain.repository.ContactRepo
 import com.example.contactbookappcompose.domain.repository.ISUDirectoryRepo
 import com.example.contactbookappcompose.domain.utils.Resource
-import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
-import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
 
 class ContactViewModel : ViewModel() {
@@ -53,17 +46,22 @@ class ContactViewModel : ViewModel() {
 //    }
 
     init {
+        getContacts()
+    }
+
+    private fun getContacts() {
         viewModelScope.launch {
             contactRepo.getContacts().collect { result ->
-                    when (result) {
-                        is Resource.Success -> {
-                            _state.emit(ContactState(contacts = result.data ?: emptyList()))
-                        }
-                        is Resource.Error -> {
-                            _state.emit(ContactState(errorMessage = result.message))
-                        }
+                when (result) {
+                    is Resource.Success -> {
+                        _state.emit(ContactState(contacts = result.data ?: emptyList()))
+                    }
+
+                    is Resource.Error -> {
+                        _state.emit(ContactState(errorMessage = result.message))
                     }
                 }
+            }
         }
     }
 

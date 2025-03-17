@@ -8,6 +8,11 @@ plugins {
 }
 
 android {
+
+    viewBinding {
+        enable = true
+    }
+
     namespace = "com.example.contactbookappcompose"
     compileSdk = 35
 
@@ -20,6 +25,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -54,6 +60,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,6 +72,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //lifecycle aware viewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation ("io.realm.kotlin:library-base:2.0.0")

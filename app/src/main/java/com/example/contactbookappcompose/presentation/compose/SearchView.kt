@@ -1,4 +1,4 @@
-package com.example.contactbookappcompose.presentation
+package com.example.contactbookappcompose.presentation.compose
 
 import android.content.Context
 import androidx.compose.foundation.clickable

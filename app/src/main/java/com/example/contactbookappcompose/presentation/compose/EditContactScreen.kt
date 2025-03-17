@@ -1,4 +1,4 @@
-package com.example.contactbookappcompose.presentation
+package com.example.contactbookappcompose.presentation.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
