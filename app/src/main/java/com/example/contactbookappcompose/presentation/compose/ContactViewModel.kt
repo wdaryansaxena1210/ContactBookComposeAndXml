@@ -113,7 +113,7 @@ class ContactViewModel : ViewModel() {
 
     fun searchContact(context: Context, query: String, onResult: (persons: List<Person>) -> Unit){
 
-        //NOTE : onResult HAS to be a fucntion that changes a STATE variable's value
+        //NOTE : onResult HAS to be a function that changes a STATE variable's value
         // onResult = {   (String:say) -> state.value = say    }
         viewModelScope.launch {
         ISUContactRepo.getContacts(context, query, onResult)

@@ -28,11 +28,11 @@ class ContactListAdapter(private val contacts : List<Contact>, private val onCli
         return ContactViewHolder(binding)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
+        //this function does 2 THINGS
+        //1. ACCESS (not yet bind) the data you need to bind to your view
+        //2. Actually bind that data
         val contact = contacts[position]
         holder.bind(contact, onClick)
     }

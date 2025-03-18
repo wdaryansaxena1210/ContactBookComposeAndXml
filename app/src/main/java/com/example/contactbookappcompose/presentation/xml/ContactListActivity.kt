@@ -15,14 +15,17 @@ import com.example.contactbookappcompose.R
 import com.example.contactbookappcompose.presentation.compose.ContactViewModel
 import com.example.contactbookappcompose.presentation.xml.adapter.ContactListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 
 class ContactListActivity : AppCompatActivity() {
 
-    lateinit var contactRecyclerView: RecyclerView
     private val viewModel : ContactViewModel by viewModels()
-    lateinit var addContactButton : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
+        //create activity
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_contact_list)
@@ -31,23 +34,30 @@ class ContactListActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        addContactButton = findViewById(R.id.btnAddContact)
-        addContactButton.setOnClickListener {
-            val intent = Intent(this, AddContactActivity::class.java)
-            startActivity(intent)
-        }
+        //activity created (think of an outer layout design created, children are yet to be populated
 
 
-        contactRecyclerView = findViewById(R.id.contactRecyclerView)
-        contactRecyclerView.layoutManager = LinearLayoutManager(this@ContactListActivity)
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
+
             viewModel.state.collect{state->
+                //collect the state. Whenever state changed, go back to the fragment which shows the List of contacts
+                //not the best impl for when state changed cuz you changed contactDetails using EditContact button
+
                 if(state.errorMessage != null){
                     println("error occurred : ${state.errorMessage}")
                 }
-                contactRecyclerView.adapter = ContactListAdapter(contacts = state.contacts, onClick = { println(it.id) })
+
+                val contactListFragment = ContactListFragment(state.contacts).apply {
+                    arguments=Bundle().apply {
+                        putString("hello", "Hello, World!")
+                    }
+                }
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.FragmentContainer, contactListFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }
