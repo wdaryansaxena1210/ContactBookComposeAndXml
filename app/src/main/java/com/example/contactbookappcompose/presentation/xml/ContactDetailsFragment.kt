@@ -58,64 +58,20 @@ class ContactDetailFragment : Fragment() {
 
         // Edit Button Click
         binding.btnEdit.setOnClickListener {
-//            val intent = Intent(requireActivity(), EditContactActivity::class.java)
-//            intent.putExtra("contactId", contactId?.toHexString())
-//            startActivity(intent)
+            val intent = Intent(requireActivity(), AddContactActivity::class.java)
+            intent.putExtra("contactId", contactId)
+            startActivity(intent)
             println("edit contact")
         }
 
         // Delete Button Click
         binding.btnDelete.setOnClickListener {
-            contactId?.let { id ->
-//                viewModel.deleteContact(id)
-//                requireActivity().supportFragmentManager.popBackStack()
+            contact?.let { contact ->
+                viewModel.deleteContact(contact.id)
+                requireActivity().supportFragmentManager.popBackStack()
             println("deleting contact")
             }
         }
     }
 }
 
-
-//class ContactDetailsFragment : Fragment() {
-//
-//    private lateinit var binding: FragmentContactDetailsBinding
-//    private lateinit var viewModel: ContactViewModel
-//    private var contactId: String? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            contactId = it.getString(contactId)
-//        }
-//        viewModel = ViewModelProvider(requireActivity())[ContactViewModel::class.java]
-//    }
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        // Inflate the layout for this fragment
-//        binding = FragmentContactDetailsBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
-//
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment ContactDetailsFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            ContactDetailsFragment().apply {
-//                arguments = Bundle().apply {
-////                    putString(ARG_PARAM1, param1)
-////                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
-//}

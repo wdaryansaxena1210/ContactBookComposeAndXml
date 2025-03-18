@@ -28,6 +28,12 @@ class AddContactActivity : AppCompatActivity() {
             insets
         }
 
+        var contact :Contact? = null
+        val contactId = intent.getStringExtra("contactId")
+//        println(contactId + " is the extraString")
+
+
+
         val firstNameEditText = findViewById<EditText>(R.id.etFirstName)
         val lastNameEditText = findViewById<EditText>(R.id.etLastName)
         val phoneNumberEditText = findViewById<EditText>(R.id.etPhoneNumber)
@@ -35,6 +41,22 @@ class AddContactActivity : AppCompatActivity() {
         val addressEditText = findViewById<EditText>(R.id.etAddress)
         val companyNameEditText = findViewById<EditText>(R.id.etCompanyName)
         val saveButton = findViewById<Button>(R.id.btnSaveContact)
+
+        if(contactId!=null){
+            contact = viewModel.findContactById(contactId)
+
+            contact?.let {
+                firstNameEditText.setText(it.firstName)
+                lastNameEditText.setText(it.lastName)
+                phoneNumberEditText.setText(it.phoneNumber)
+                emailEditText.setText(it.email)
+                addressEditText.setText(it.address)
+                companyNameEditText.setText(it.companyName)
+            }
+
+        }
+
+
 
         saveButton.setOnClickListener{
             val contact = ContactData(
@@ -45,7 +67,7 @@ class AddContactActivity : AppCompatActivity() {
                 address = addressEditText.text.toString(),
                 phoneNumber = phoneNumberEditText.text.toString()
             )
-
+            println("calling viewModel,addContact on $contact")
             viewModel.addContact(contact)
 
             finish()
