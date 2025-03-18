@@ -1,23 +1,17 @@
 package com.example.contactbookappcompose.presentation.xml
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.contactbookappcompose.R
 import com.example.contactbookappcompose.presentation.compose.ContactViewModel
-import com.example.contactbookappcompose.presentation.xml.adapter.ContactListAdapter
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 
-class ContactListActivity : AppCompatActivity() {
+class MainContactListActivity : AppCompatActivity() {
 
     private val viewModel : ContactViewModel by viewModels()
 

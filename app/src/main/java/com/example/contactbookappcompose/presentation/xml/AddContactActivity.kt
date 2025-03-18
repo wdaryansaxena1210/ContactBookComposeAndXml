@@ -42,6 +42,8 @@ class AddContactActivity : AppCompatActivity() {
         val companyNameEditText = findViewById<EditText>(R.id.etCompanyName)
         val saveButton = findViewById<Button>(R.id.btnSaveContact)
 
+
+        //if a contact Id was supplied, i.e. we got to this page by clicking the "edit"
         if(contactId!=null){
             contact = viewModel.findContactById(contactId)
 
@@ -57,6 +59,12 @@ class AddContactActivity : AppCompatActivity() {
         }
 
 
+        //if firstName is passed, i.e. we came to this page/activity after clicking on a search result
+        if(intent.getStringExtra("firstName") != null){
+            firstNameEditText.setText(intent.getStringExtra("firstName"))
+            lastNameEditText.setText(intent.getStringExtra("lastName"))
+            emailEditText.setText(intent.getStringExtra("email"))
+        }
 
         saveButton.setOnClickListener{
             val contact = ContactData(

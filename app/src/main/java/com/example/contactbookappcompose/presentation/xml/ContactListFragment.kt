@@ -60,6 +60,12 @@ class ContactListFragment(private var contacts: List<Contact>) : Fragment() {
         }
 
 
+        val searchButton : FloatingActionButton = binding.btnSearch
+        searchButton.setOnClickListener(fun(v :View){
+            val searchActivityIntent = Intent(context, SearchActivity::class.java)
+            startActivity(searchActivityIntent)
+        })
+
 
         contactRecyclerView = binding.contactRecyclerView
         contactRecyclerView.layoutManager = LinearLayoutManager(context)

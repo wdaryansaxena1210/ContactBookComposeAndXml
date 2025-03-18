@@ -14,7 +14,22 @@
         android:contentDescription="Add Contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        app:fabSize="normal"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:src="@android:drawable/ic_menu_search"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddContact"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddContact"
+        app:layout_constraintStart_toStartOf="@+id/btnAddContact"
+        app:fabSize="normal"
+        android:minWidth="56dp"
+        android:minHeight="56dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,6 +38,8 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:padding="8dp"
+        android:minWidth="56dp"
+        android:minHeight="56dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
