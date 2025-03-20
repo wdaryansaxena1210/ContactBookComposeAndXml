@@ -1,4 +1,4 @@
-package com.example.contactbookappcompose.presentation
+package com.example.contactbookappcompose.presentation.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
